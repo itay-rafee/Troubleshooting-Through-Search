@@ -7,8 +7,9 @@ import java.util.Scanner;
 public class Ex1 {
     private final static int algorithmType = 0, openListCheck = 1, bigOrSmall = 2;
     private final static int numBFS = 0, numDFID = 1, numAStar = 2, numIDAStar = 3, numDFBnB = 4;
-    private final static int emptyCell = 0, redCell = 1, blueCell = 2, greenCell = 3, yellowCell = 4;
     private final static int smallGameSize = 3, bigGameSize = 5;
+    public final static int emptyCell = 0, redCell = 1, blueCell = 2, greenCell = 3, yellowCell = 4;
+    public final static char[] arrChar = {'_', 'R', 'B', 'G', 'Y'};
     private static boolean small = false;
     private static boolean withoutOpen = false;
     private static int algoToUse = 0;
@@ -100,7 +101,7 @@ public class Ex1 {
         }
         int[] arr = numOfSpace.stream().mapToInt(i -> i).toArray();
         String newId = Arrays.deepToString(newBoard);
-        return new Node(null, newBoard, arr, new int[2], newId);
+        return new Node(null, newBoard, arr, new int[2], newId, 0);
     }
 
 
