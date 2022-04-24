@@ -32,7 +32,8 @@ public class BFS {
     public static void printPath(Node n) {
         StringBuilder s = new StringBuilder(n.getPath());
         System.out.println("Num: "+counter);
-        System.out.println("Cost: "+n.get_cost());
+        if (Ex1.needHeuristicFun) System.out.println("Cost: "+n.get_regularCost());
+        else System.out.println("Cost: "+n.get_cost());
         while (n.get_father().get_father() != null){
             n = n.get_father();
             s.insert(0, n.getPath() + "--");

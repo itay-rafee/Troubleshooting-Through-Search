@@ -1,6 +1,5 @@
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
+
 
 public class DFID {
     public static final String cutoff = "cutoff", fail = "fail";
@@ -32,7 +31,7 @@ public class DFID {
                 }
             }
             H.remove(n.get_id());
-            if (isCutoff == true) return cutoff;
+            if (isCutoff) return cutoff;
             else return fail;
         }
     }
