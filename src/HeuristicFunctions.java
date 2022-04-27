@@ -65,7 +65,7 @@ public class HeuristicFunctions {
             ans = Math.min(ans, costFoStat(currentStatus, goal, new int[]{3,0,1,2})); //5
             ans = Math.min(ans, costFoStat(currentStatus, goal, new int[]{3,0,2,1})); //6
         }
-        return ans * cost;
+        return ans * cost; // should be * cost
     }
 
     private static int costFoStat(int[][] currentStatus, int[][] goal, int[] stat) {

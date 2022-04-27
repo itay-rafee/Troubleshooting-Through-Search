@@ -121,8 +121,8 @@ public class Node implements Comparable<Node> {
                         has_not_child = check(i, j - 1);
                         break;
                 }
+                ++circleMove;
             }
-            ++circleMove;
         }
         return !has_not_child;
     }
@@ -211,7 +211,10 @@ public class Node implements Comparable<Node> {
     @Override
     public String toString() {
         return "Node{" +
-                "_id='" + _cost + '\'' +
+//                "_h=" + _heuristicCost +
+                ", _r=" + _id +
+                ", _c=" + _cost +
+//                ", _id='" + _id + '\'' +
                 '}';
     }
 }

@@ -6,6 +6,7 @@ public class DFID {
     public static final String cutoff = "cutoff", fail = "fail";
     public static void DFID(Node start, String goal){
         for (int depth = 1; depth < Integer.MAX_VALUE; depth++) {
+            System.out.println(depth);
             HashSet<String> H = new HashSet<>();
             String result = limitedDFS(start, goal, depth, H);
             if (!result.equals(cutoff) && !result.equals(fail)){
@@ -14,7 +15,7 @@ public class DFID {
             }
             start = new Node(null, start.get_board(), start.get_space(), new int[2], start.get_id(), 0);
         }
-        System.out.println("Not good!!");
+        System.out.println("no path");
     }
 
     private static String limitedDFS(Node n, String goal, int limit, HashSet<String> H) {
@@ -42,6 +43,7 @@ public class DFID {
         StringBuilder s = new StringBuilder(n.getPath());
         System.out.println("Num: "+counter);
         System.out.println("Cost: "+n.get_cost());
+        if (n.get_father() == null)return "";
         while (n.get_father().get_father() != null){
             n = n.get_father();
             s.insert(0, n.getPath() + "--");

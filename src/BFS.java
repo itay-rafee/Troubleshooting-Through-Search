@@ -44,6 +44,7 @@ public class BFS {
         if (Ex1.needHeuristicFun) System.out.println("Cost: "+n.get_regularCost());
         else System.out.println("Cost: "+n.get_cost());
         if (n.get_father() == null)return;
+        int i1 = 16;
         while (n.get_father().get_father() != null){
             n = n.get_father();
             StringBuilder s1 = new StringBuilder();
@@ -51,6 +52,7 @@ public class BFS {
                 s1.append(Arrays.toString(n.get_board()[i])).append("\n");
             }
             s1.append(n.get_regularCost()).append("\n");
+            s1.append((i1--)).append("\n");
             s.insert(0, s1 + "\n\n");
         }
         System.out.println(s.toString());
@@ -69,3 +71,15 @@ public class BFS {
         return s.toString();
     }
 }
+
+//////////  check /////////////
+//        while (n.get_father().get_father() != null){
+//            n = n.get_father();
+//            StringBuilder s1 = new StringBuilder();
+////            for (int i = 0; i < n.get_board().length; i++) {
+////                s1.append(Arrays.toString(n.get_board()[i])).append("\n");
+////            }
+////            s1.append(n.get_regularCost()).append("\n");
+//            s1.append("\"").append(n.get_id()).append("\",\n");
+//            s.insert(0, s1);
+//        }
