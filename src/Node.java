@@ -24,6 +24,10 @@ public class Node implements Comparable<Node> {
         this.out = out;
     }
 
+    public void set_regularCost(int _regularCost) {
+        this._regularCost = _regularCost;
+    }
+
     public int get_regularCost() {
         return _regularCost;
     }
@@ -150,6 +154,7 @@ public class Node implements Comparable<Node> {
         _move = move;
         _id = id;
         _cost = cost;
+        _regularCost = cost;
         setI();setJ();
     }
 
@@ -190,6 +195,8 @@ public class Node implements Comparable<Node> {
 
     @Override
     public int compareTo(Node o) {
+        if (Ex1.algoToUse == 4) // if it is DFBnB algorithm
+            return Integer.compare(_regularCost, o.get_regularCost());
         return Integer.compare(_cost, o.get_cost());
     }
 
@@ -199,5 +206,12 @@ public class Node implements Comparable<Node> {
         if (o == null || getClass() != o.getClass()) return false;
         Node node = (Node) o;
         return Objects.equals(_id, node._id);
+    }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "_id='" + _cost + '\'' +
+                '}';
     }
 }

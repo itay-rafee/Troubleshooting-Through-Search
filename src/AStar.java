@@ -6,45 +6,41 @@ public class AStar {
             System.out.println(start.getPath());
             return;
         }
+
         PriorityQueue<Node> L = new PriorityQueue<>();
+        HashMap<String, Node> open = new HashMap<>();
+        HashMap<String, Node> close = new HashMap<>();
         L.add(start);
-        HashMap<String, Node> C = new HashMap<>();
+        open.put(start.get_id(), start);
+
         while (!L.isEmpty()){
+            if (!Ex1.withoutOpen){
+                System.out.println("Open List:\n" + L);
+            }
+
             Node n  = L.poll();
+            open.remove(n.get_id());
+
             if (n.get_id().equals(goal)) {
                 BFS.printPath(n);
                 return;
             }
-            C.put(n.get_id(), n);
+
+            close.put(n.get_id(), n);
             while (n.has_next_child()) {
                 BFS.counter++;
                 Node newN = n.get_child();
-                if (!C.containsKey(newN.get_id()) && !L.contains(newN)) {
-                    C.put(newN.get_id(), newN);
+                if (!open.containsKey(newN.get_id()) && !close.containsKey(newN.get_id())) {
+                    open.put(newN.get_id(), newN);
                     L.add(newN);
                 }
                 else if (L.contains(newN)){
-                    Node checkNode = C.get(newN.get_id());
+                    Node checkNode = open.get(newN.get_id());
                     if (checkNode.get_cost() > newN.get_cost()) {
                         L.remove(checkNode);
                         L.add(newN);
-                        C.put(newN.get_id(), newN);
+                        open.put(newN.get_id(), newN);
                     }
-//                    Stack<Node> stack = new Stack<>();
-//                    while (!L.isEmpty()) {
-//                        Node checkNode = L.poll();
-//                        if (checkNode.equals(newN)){
-//                            if (newN.get_cost() > checkNode.get_cost()){
-//                                stack.push(checkNode);
-//                            }
-//                            else stack.push(newN);
-//                            break;
-//                        }
-//                        stack.push(checkNode);
-//                    }
-//                    while (!stack.isEmpty()) {
-//                        L.add(stack.pop());
-//                    }
                 }
             }
         }

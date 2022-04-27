@@ -14,13 +14,18 @@ public class Ex1 {
     public final static char[] arrChar = {'_', 'R', 'B', 'G', 'Y'};
     public static boolean small = false;
     public static boolean withoutOpen = false, needHeuristicFun = true;
-    private static int algoToUse = 0;
+    public static int algoToUse = 0;
     private static Node start;
     private static String goalId;
     public static int[][][] goalBoard;
 
     public static void main(String[] args) {
         String filename = "input.txt";
+        setup(filename);
+        run();
+    }
+
+    public static void check(String filename) {
         setup(filename);
         run();
     }
