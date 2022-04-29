@@ -1,23 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Ex1 {
-    ////////////////// Magic Number ///////////////////
-    private final static int algorithmType = 0, openListCheck = 1, bigOrSmall = 2;
-    private final static int numBFS = 0, numDFID = 1, numAStar = 2, numIDAStar = 3, numDFBnB = 4;
-    public final static int smallGameSize = 3, bigGameSize = 5, numOfMarblesSmall = 2, numOfMarblesBig = 4;
-    public final static int emptyCell = 0, redCell = 1, blueCell = 2, greenCell = 3, yellowCell = 4;
-    public final static int redCost = 1, blueCost = 2, greenCost = 10, yellowCost = 1;
-    public final static char[] arrChar = {'_', 'R', 'B', 'G', 'Y'};
-    public static boolean small = false;
-    public static boolean withoutOpen = false, needHeuristicFun = true;
-    public static int algoToUse = 0;
-    private static Node start;
-    private static String goalId;
-    public static int[][][] goalBoard;
 
     public static void main(String[] args) {
         String filename = "input.txt";
@@ -34,27 +23,52 @@ public class Ex1 {
      * In this method we run the algorithm of the game.
      */
     private static void run() {
+        String writeToOutput = "";
+        long startTime = System.nanoTime();
         switch (algoToUse) {
             case numBFS:
-                BFS.bfs(start, goalId);
+                writeToOutput = BFS.finedPath(start, goalId);
                 break;
             case numDFID:
-                DFID.DFID(start, goalId);
+                writeToOutput = DFID.finedPath(start, goalId);
                 break;
             case numAStar:
-                AStar.aStar(start, goalId);
+                writeToOutput = AStar.finedPath(start, goalId);
                 break;
             case numIDAStar:
-                IDAStar.IDAStar(start, goalId);
+                writeToOutput = IDAStar.finedPath(start, goalId);
                 break;
             case numDFBnB:
-                DFBnB.DFBnB(start, goalId);
+                writeToOutput = DFBnB.finedPath(start, goalId);
                 break;
+        }
+        long endTime = System.nanoTime();
+        long timeElapsed = endTime - startTime;
+        double timeSecond = (double)timeElapsed / 1000000000;
+        writeToOutput += timeSecond + " seconds\n";
+        System.out.println(writeToOutput);
+        writeToFile("output", writeToOutput);
+    }
+
+    /**
+     * Write text into file
+     * @param filename - String the name of the file we write to
+     * @param text - String the text we write on the file
+     */
+    private static void writeToFile(String filename, String text) {
+        try {
+            FileWriter myWriter = new FileWriter(filename);
+            myWriter.write(text);
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
     }
 
     /**
      * Setup the data of the game
+     * @param filename - String the name of the file we read from
      */
     private static void setup(String filename) {
         try {
@@ -158,16 +172,6 @@ public class Ex1 {
         return new Node(null, newBoard, arr, new int[2], newId, 0);
     }
 
-//    private static void setColor(int[][] board, int i, int j, String marble) {
-//        switch (marble) {
-//            case "R": board[i][j] = redCell;break;
-//            case "B": board[i][j] = blueCell;break;
-//            case "G": board[i][j] = greenCell;break;
-//            case "Y": board[i][j] = yellowCell;break;
-//        }
-//    }
-
-
     private static void setBigSmall(String isBigSmall) {
         if (isBigSmall.equals("small")){small = true;}
     }
@@ -185,4 +189,18 @@ public class Ex1 {
             case "DFBnB": algoToUse = numDFBnB;break;
         }
     }
+
+    ////////////////// Magic Number ///////////////////
+    private final static int algorithmType = 0, openListCheck = 1, bigOrSmall = 2;
+    private final static int numBFS = 0, numDFID = 1, numAStar = 2, numIDAStar = 3, numDFBnB = 4;
+    public final static int smallGameSize = 3, bigGameSize = 5, numOfMarblesSmall = 2, numOfMarblesBig = 4;
+    public final static int emptyCell = 0, redCell = 1, blueCell = 2, greenCell = 3, yellowCell = 4;
+    public final static int redCost = 1, blueCost = 2, greenCost = 10, yellowCost = 1;
+    public final static char[] arrChar = {'_', 'R', 'B', 'G', 'Y'};
+    public static boolean small = false;
+    public static boolean withoutOpen = false, needHeuristicFun = true;
+    public static int algoToUse = 0;
+    private static Node start;
+    private static String goalId;
+    public static int[][][] goalBoard;
 }

@@ -1,7 +1,7 @@
 import java.util.*;
 
-public class IDAStar {
-    public static void IDAStar(Node start, String goal){
+public class IDAStar extends Algo {
+    public static String finedPath(Node start, String goal){
         Stack<Node> L = new Stack<>();
         HashMap<String, Node> H = new HashMap<>();
         int t = HeuristicFunctions.heuristicFunctions(start.get_board());
@@ -36,11 +36,12 @@ public class IDAStar {
                             if (gTag.get_regularCost() > g.get_regularCost()) {
                                 L.remove(gTag); H.remove(g.get_id());
                             }
-                            else {continue;} // continue
+                            else {
+                                continue;
+                            }
                         }
                         else if (g.get_id().equals(goal)) {
-                            BFS.printPath(g);
-                            return;
+                            return path(g);
                         }
                         L.push(g);
                         H.put(g.get_id(), g);
@@ -50,9 +51,6 @@ public class IDAStar {
             t = minF;
             start = new Node(null, start.get_board(), start.get_space(), new int[2], start.get_id(), 0);
         }
-    }
-
-    public static void IDAStarWithOpen(Node start, Node goal){
-
+        return getNoPath();
     }
 }

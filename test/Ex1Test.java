@@ -1,10 +1,9 @@
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class Ex1Test {
-    String algo = "IDA*";
+    String algo = "A*";
 
     @org.junit.jupiter.api.Test
     void unit() {
@@ -81,8 +80,7 @@ class Ex1Test {
         }
     }
 
-    ///// A* result: 42
-    /** not work with A* */
+    ///// A* result: 42, BFS result: 72
     @org.junit.jupiter.api.Test
     void bad() {
         String filename = "check.txt";
@@ -132,7 +130,6 @@ class Ex1Test {
     }
 
     ///// A* result: 28
-    // not work in A*
     @org.junit.jupiter.api.Test
     void checkALL() {
         String filename = "check.txt";

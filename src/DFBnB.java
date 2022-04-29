@@ -1,7 +1,7 @@
 import java.util.*;
 
-public class DFBnB {
-    public static void DFBnB(Node start, String goal) {
+public class DFBnB extends Algo {
+    public static String finedPath(Node start, String goal) {
         Stack<Node> L = new Stack<>();
         HashMap<String, Node> H = new HashMap<>();
         L.push(start);
@@ -24,6 +24,7 @@ public class DFBnB {
                 for (Node g : N) {
                     if (g.get_regularCost() >= t)break;
                     else if (H.containsKey(g.get_id()) && H.get(g.get_id()).isOut()) {
+                        continue;
                     }
                     else if (H.containsKey(g.get_id()) && !H.get(g.get_id()).isOut()) {
                         if (!(H.get(g.get_id()).get_regularCost() <= g.get_regularCost())){
@@ -35,10 +36,10 @@ public class DFBnB {
                     }
                     else if (g.get_id().equals(goal)){
                         t = g.get_regularCost();
-                        result = BFS.getPath(g);
+                        result = getPath(g);
                         break;
                     }
-                    else {copyN.add(g);}
+                    copyN.add(g);
                 }
                 for (int i = copyN.size(); i > 0 ; i--) {
                     Node node = copyN.get(i-1);
@@ -47,10 +48,6 @@ public class DFBnB {
                 }
             }
         }
-        System.out.println(result);
-    }
-
-    public static void DFBnBWithOpen(Node start, Node goal) {
-
+        return result;
     }
 }

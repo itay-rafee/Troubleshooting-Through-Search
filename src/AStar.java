@@ -1,11 +1,10 @@
 import java.util.*;
 
-public class AStar {
+public class AStar extends Algo {
 
-    public static void aStar(Node start, String goal){
+    public static String finedPath(Node start, String goal){
         if (start.get_id().equals(goal)){
-            System.out.println(start.getPath());
-            return;
+            return path(start);
         }
 
         PriorityQueue<Node> L = new PriorityQueue<>();
@@ -20,16 +19,16 @@ public class AStar {
             }
 
             Node n  = L.poll();
+            assert n != null;
             open.remove(n.get_id());
 
             if (n.get_id().equals(goal)) {
-                BFS.printPath(n);
-                return;
+                return path(n);
             }
 
             close.put(n.get_id(), n);
             while (n.has_next_child()) {
-                BFS.counter++;
+                counter++;
                 Node newN = n.get_child();
                 if (!open.containsKey(newN.get_id()) && !close.containsKey(newN.get_id())) {
                     open.put(newN.get_id(), newN);
@@ -45,50 +44,6 @@ public class AStar {
                 }
             }
         }
-    }
-
-//    public static void aStar1(Node start, String goal) {
-//        if (start.get_id().equals(goal)){
-//            System.out.println(start.getPath());
-//            return;
-//        }
-//        PriorityQueue<Node> L = new PriorityQueue<>();
-//        L.add(start);
-//        HashMap<String, Node> C = new HashMap<>();
-//        C.put(start.get_id(),start);
-//        while (!L.isEmpty()){
-//            Node n  = L.poll();
-//            for (int i = 0; i < s1.length; i++) {
-//                if (s1[i].equals(n.get_id())){
-//                    if (i == 15)
-//                    System.out.println(i);
-//                }
-//            }
-//            if (n.get_id().equals(goal)) {
-//                BFS.printPath(n);
-//                return;
-//            }
-//            while (n.has_next_child()) {
-//                Node newN = n.get_child();
-//                if (!C.containsKey(newN.get_id())) {
-//                    C.put(newN.get_id(), newN);
-//                    L.add(newN);
-//                }
-//                else {
-//                    if (L.contains(newN)){
-//                        Node checkNode = C.get(newN.get_id());
-//                        if (checkNode.get_cost() > newN.get_cost()) {
-//                            L.remove(checkNode);
-//                            L.add(newN);
-//                            C.put(newN.get_id(), newN);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-    public static void aStarWithOpen(Node start, Node goal){
-
+        return getNoPath();
     }
 }
