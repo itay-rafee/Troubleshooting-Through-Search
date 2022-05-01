@@ -16,7 +16,7 @@ public class BFS extends Algo{
         open.add(start.get_id());
         while (!L.isEmpty()){
             if (!Ex1.withoutOpen){
-                System.out.println("Open List:\n" + L);
+                System.out.println("Open List:(size "+L.size()+")\n" + L);
             }
 
             Node n  = L.remove();

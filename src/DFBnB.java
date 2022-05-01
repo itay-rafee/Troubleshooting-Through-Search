@@ -9,6 +9,10 @@ public class DFBnB extends Algo {
         String result = null;
         int t = Integer.MAX_VALUE;
         while (!L.isEmpty()) {
+            if (!Ex1.withoutOpen){
+                System.out.println("Open List:(size "+L.size()+")\n" + L + "\n");
+            }
+
             Node n = L.pop();
             if (n.isOut()) {
                 H.remove(n.get_id());
@@ -20,23 +24,27 @@ public class DFBnB extends Algo {
                     N.add(n.get_child());
                 }
                 Collections.sort(N);
+                counter += N.size();
                 ArrayList<Node> copyN = new ArrayList<>();
                 for (Node g : N) {
-                    if (g.get_regularCost() >= t)break;
+                    if (g.get_cost() >= t)break;
                     else if (H.containsKey(g.get_id()) && H.get(g.get_id()).isOut()) {
                         continue;
                     }
                     else if (H.containsKey(g.get_id()) && !H.get(g.get_id()).isOut()) {
-                        if (!(H.get(g.get_id()).get_regularCost() <= g.get_regularCost())){
-                            copyN.add(g);
+                        if (!(H.get(g.get_id()).get_cost() <= g.get_cost())){
                             Node gTag = H.get(g.get_id());
+                            copyN.add(g);
                             L.remove(gTag);
                             H.remove(g.get_id());
                         }
                     }
                     else if (g.get_id().equals(goal)){
-                        t = g.get_regularCost();
-                        result = getPath(g);
+                        t = g.get_cost();
+                        System.out.println(t);
+                        result = path(g);
+//                        System.out.println(result);
+//                        System.exit(1);
                         break;
                     }
                     copyN.add(g);

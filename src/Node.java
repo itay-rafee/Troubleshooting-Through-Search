@@ -53,6 +53,10 @@ public class Node implements Comparable<Node> {
         return _id;
     }
 
+    /**
+     * this method return the child of the node
+     * @return Node
+     */
     public Node get_child() {
         int newPlace = getPlace(newI, newJ);
         // set new board
@@ -98,6 +102,13 @@ public class Node implements Comparable<Node> {
         return new Node(this, newBoard, newSpace, newMove, newId, cost);
     }
 
+    /**
+     * This method check if there is child to this Node
+     * if there is child return true, else false
+     * with all iteration we check different child and set up
+     * the next child
+     * @return boolean
+     */
     public boolean has_next_child() {
         boolean has_not_child = true;
         while (has_not_child && indexSpace < _sizeSpace) {
@@ -127,6 +138,12 @@ public class Node implements Comparable<Node> {
         return !has_not_child;
     }
 
+    /**
+     * This method check all the situation if this is correct move
+     * @param i index of the row board
+     * @param j index of the col board
+     * @return bool false if this is correct mode, else false
+     */
     private boolean check(int i, int j) {
         boolean ans = true;
         if ((i < _sizeBoard && i > -1 && j < _sizeBoard && j > -1 && _board[i][j] != 0 && checkMove(i, j))) {
@@ -137,10 +154,16 @@ public class Node implements Comparable<Node> {
         return ans;
     }
 
+    /** check if this is not the same move as before */
     private boolean checkMove(int i, int j) {
         return !(_move[firstPlace] == _space[indexSpace] && _move[nextPlace] == getPlace(i, j));
     }
 
+    /**
+     * @param i index of the row board
+     * @param j index of the col board
+     * @return the place of this point like we defined it
+     */
     private int getPlace(int i, int j) {
         return i * 10 + j;
     }
@@ -172,6 +195,10 @@ public class Node implements Comparable<Node> {
         _regularCost = regularCost;
     }
 
+    /**
+     * This method return the move that the node did
+     * @return String the move of the node
+     */
     public String getPath() {
         int i1 = _move[firstPlace] / 10 + 1;
         int j1 = _move[firstPlace] % 10 + 1;
@@ -195,8 +222,6 @@ public class Node implements Comparable<Node> {
 
     @Override
     public int compareTo(Node o) {
-        if (Ex1.algoToUse == 4) // if it is DFBnB algorithm
-            return Integer.compare(_regularCost, o.get_regularCost());
         return Integer.compare(_cost, o.get_cost());
     }
 
@@ -211,10 +236,10 @@ public class Node implements Comparable<Node> {
     @Override
     public String toString() {
         return "Node{" +
-//                "_h=" + _heuristicCost +
-                ", _r=" + _id +
-                ", _c=" + _cost +
-//                ", _id='" + _id + '\'' +
+                "ID='" + _id + '\'' +
+                ", f=" + _cost +
+                " h=" + _heuristicCost +
+                ", g=" + _regularCost +
                 '}';
     }
 }

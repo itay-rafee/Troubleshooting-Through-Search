@@ -14,6 +14,10 @@ public class Ex1 {
         run();
     }
 
+    /**
+     * 'check' function help to test the game
+     * @param filename the input fo the game
+     */
     public static void check(String filename) {
         setup(filename);
         run();
@@ -46,7 +50,7 @@ public class Ex1 {
         long timeElapsed = endTime - startTime;
         double timeSecond = (double)timeElapsed / 1000000000;
         writeToOutput += timeSecond + " seconds\n";
-        System.out.println(writeToOutput);
+        System.out.println(writeToOutput); // to delete
         writeToFile("output", writeToOutput);
     }
 
@@ -104,6 +108,11 @@ public class Ex1 {
         }
     }
 
+    /**
+     * set the board goal and heuristic goal
+     * @param boardSize the size of the board
+     * @param myReader reader from the input file
+     */
     private static void SetGoal(int boardSize, Scanner myReader) {
         int[][] newBoard = new int[boardSize][boardSize];
         int indRed = 0, indBlue = 0, indGreen = 0, indYellow = 0;
@@ -145,6 +154,12 @@ public class Ex1 {
     }
 
 
+    /**
+     * in this function we define new node by the file
+     * @param boardSize the size of the board
+     * @param myReader reader from the input file
+     * @return Node
+     */
     private static Node getNode(int boardSize, Scanner myReader) {
         int[][] newBoard = new int[boardSize][boardSize];
         ArrayList<Integer> numOfSpace = new ArrayList<>();

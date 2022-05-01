@@ -15,7 +15,7 @@ public class AStar extends Algo {
 
         while (!L.isEmpty()){
             if (!Ex1.withoutOpen){
-                System.out.println("Open List:\n" + L);
+                System.out.println("Open List:(size "+L.size()+")\n" + L);
             }
 
             Node n  = L.poll();

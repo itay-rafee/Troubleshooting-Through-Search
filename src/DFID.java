@@ -21,6 +21,9 @@ public class DFID extends Algo {
             return path(n);
         else if (limit == 0) return cutoff;
         else {
+            if (!Ex1.withoutOpen){
+                System.out.println("Open List:(size "+H.size()+")\n" + H);
+            }
             H.add(n.get_id());
             boolean isCutoff = false;
             while (n.has_next_child()){

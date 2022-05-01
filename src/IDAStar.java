@@ -7,25 +7,28 @@ public class IDAStar extends Algo {
         int t = HeuristicFunctions.heuristicFunctions(start.get_board());
 
         while (t != Integer.MAX_VALUE) {
+            System.out.println(t);
             int minF = Integer.MAX_VALUE;
             L.push(start);
             H.put(start.get_id(), start);
 
             while (!L.isEmpty()) {
                 if (!Ex1.withoutOpen){
-                    System.out.println("Open List:\n" + L);
+                    System.out.println("Open List:(size "+L.size()+")\n" + L);
                 }
 
                 Node n = L.pop();
-                if (n.isOut()) H.remove(n.get_id());
+                if (n.isOut()) {
+                    H.remove(n.get_id());
+                }
                 else {
                     n.setOut(true);
                     L.push(n);
 
                     while (n.has_next_child()) {
-                        Node g = n.get_child(); BFS.counter++;
-                        if (g.get_regularCost() > t) {
-                            minF = Math.min(minF, g.get_regularCost());
+                        Node g = n.get_child(); counter++;
+                        if (g.get_cost() > t) {
+                            minF = Math.min(minF, g.get_cost());
                             continue;
                         }
                         else if (H.containsKey(g.get_id()) && H.get(g.get_id()).isOut()){
@@ -33,7 +36,7 @@ public class IDAStar extends Algo {
                         }
                         else if (H.containsKey(g.get_id()) && !H.get(g.get_id()).isOut()) {
                             Node gTag = H.get(g.get_id());
-                            if (gTag.get_regularCost() > g.get_regularCost()) {
+                            if (gTag.get_cost() > g.get_cost()) {
                                 L.remove(gTag); H.remove(g.get_id());
                             }
                             else {

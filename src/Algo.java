@@ -1,7 +1,15 @@
 import java.util.Arrays;
 
+/**
+ * The algorithm extend from this class
+ */
 public class Algo {
-    static int counter = 0;
+    static int counter = 1;
+
+    /**
+     * @param n the lest node of the path
+     * @return the path we get to n
+     */
     public static String path(Node n) {
         StringBuilder s = new StringBuilder(n.getPath());
         s.append("\nNum: ").append(counter).append("\n");
@@ -26,17 +34,11 @@ public class Algo {
     }
 
 
+    /**
+     * @return the answer when we get no path
+     */
     public static String getNoPath(){
         return "no path" + "\nNum: " + counter + "\n" +
                 "Cost: inf" + "\n";
-    }
-
-    public static String getPath(Node n) {
-        StringBuilder s = new StringBuilder(n.getPath());
-        while (n.get_father().get_father() != null){
-            n = n.get_father();
-            s.insert(0, n.getPath() + "--");
-        }
-        return s.toString();
     }
 }
