@@ -50,18 +50,18 @@ public class Ex1 {
         long timeElapsed = endTime - startTime;
         double timeSecond = (double)timeElapsed / 1000000000;
         writeToOutput += timeSecond + " seconds";
-        System.out.println(writeToOutput); // to delete
-        writeToFile("output", writeToOutput);
+//        System.out.println(writeToOutput); // to delete
+        writeToFile(writeToOutput);
     }
 
     /**
      * Write text into file
-     * @param filename - String the name of the file we write to
+     *
      * @param text - String the text we write on the file
      */
-    private static void writeToFile(String filename, String text) {
+    private static void writeToFile(String text) {
         try {
-            FileWriter myWriter = new FileWriter(filename);
+            FileWriter myWriter = new FileWriter("output.txt");
             myWriter.write(text);
             myWriter.close();
         } catch (IOException e) {

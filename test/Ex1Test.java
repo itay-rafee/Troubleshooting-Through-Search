@@ -57,7 +57,7 @@ class Ex1Test {
     @org.junit.jupiter.api.Test
     void bad() {
         String filename = "check.txt";
-//        String algo = "A*"; // BFS , DFID , A* , IDA* , DFBnB
+        String algo = "A*"; // BFS , DFID , A* , IDA* , DFBnB
         try {
             FileWriter myWriter = new FileWriter(filename);
             myWriter.write(algo+"\n" +
@@ -83,7 +83,7 @@ class Ex1Test {
     @org.junit.jupiter.api.Test
     void bad2() {
         String filename = "check.txt";
-        String algo = "DFID"; // BFS , DFID , A* , IDA* , DFBnB
+//        String algo = "DFID"; // BFS , DFID , A* , IDA* , DFBnB
         try {
             FileWriter myWriter = new FileWriter(filename);
             myWriter.write(algo+"\n" +
@@ -133,7 +133,7 @@ class Ex1Test {
     @org.junit.jupiter.api.Test
     void checkALL() {
         String filename = "check.txt";
-//        String algo = "BFS"; // BFS , DFID , A* , IDA* , DFBnB
+        String algo = "DFID"; // BFS , DFID , A* , IDA* , DFBnB
         try {
             FileWriter myWriter = new FileWriter(filename);
             myWriter.write(algo+"\n" +
@@ -215,7 +215,7 @@ class Ex1Test {
     @org.junit.jupiter.api.Test
     void checkNoPath() {
         String filename = "check.txt";
-//        String algo = "BFS"; // BFS , DFID , A* , IDA* , DFBnB
+        String algo = "DFBnB"; // BFS , DFID , A* , IDA* , DFBnB
         try {
             FileWriter myWriter = new FileWriter(filename);
             myWriter.write(algo+"\n" +

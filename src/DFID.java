@@ -11,7 +11,10 @@ public class DFID extends Algo {
         for (int depth = 1; depth < Integer.MAX_VALUE; depth++) {
             HashSet<String> H = new HashSet<>();
             String result = limitedDFS(start, goal, depth, H);
-            if (!result.equals(cutoff) && !result.equals(fail)){
+            if (result.equals(fail)){
+                break;
+            }
+            else if (!result.equals(cutoff)) {
                 return result;
             }
             start = new Node(null, start.get_board(), start.get_space(), new int[2], start.get_id(), 0);

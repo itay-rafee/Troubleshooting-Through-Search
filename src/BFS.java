@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -6,7 +5,6 @@ import java.util.Queue;
 public class BFS extends Algo{
     public static String finedPath(Node start, String goal){
         if (start.get_id().equals(goal)){
-//            System.out.println(start.getPath());
             return path(start);
         }
         Queue<Node> L = new LinkedList<>();
@@ -37,15 +35,3 @@ public class BFS extends Algo{
         return getNoPath();
     }
 }
-
-//////////  check /////////////
-//        while (n.get_father().get_father() != null){
-//            n = n.get_father();
-//            StringBuilder s1 = new StringBuilder();
-////            for (int i = 0; i < n.get_board().length; i++) {
-////                s1.append(Arrays.toString(n.get_board()[i])).append("\n");
-////            }
-////            s1.append(n.get_regularCost()).append("\n");
-//            s1.append("\"").append(n.get_id()).append("\",\n");
-//            s.insert(0, s1);
-//        }

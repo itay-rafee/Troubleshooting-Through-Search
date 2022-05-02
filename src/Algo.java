@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  * The algorithm extend from this class
  */

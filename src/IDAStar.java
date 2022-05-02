@@ -11,7 +11,6 @@ public class IDAStar extends Algo {
         int t = HeuristicFunctions.heuristicFunctions(start.get_board());
 
         while (t != Integer.MAX_VALUE) {
-//            System.out.println(t);
             int minF = Integer.MAX_VALUE;
             L.push(start);
             H.put(start.get_id(), start);
