@@ -2,19 +2,23 @@ import java.util.*;
 
 public class IDAStar extends Algo {
     public static String finedPath(Node start, String goal){
+        if (start.get_id().equals(goal)){
+            return path(start);
+        }
+
         Stack<Node> L = new Stack<>();
         HashMap<String, Node> H = new HashMap<>();
         int t = HeuristicFunctions.heuristicFunctions(start.get_board());
 
         while (t != Integer.MAX_VALUE) {
-            System.out.println(t);
+//            System.out.println(t);
             int minF = Integer.MAX_VALUE;
             L.push(start);
             H.put(start.get_id(), start);
 
             while (!L.isEmpty()) {
                 if (!Ex1.withoutOpen){
-                    System.out.println("Open List:(size "+L.size()+")\n" + L);
+                    System.out.println("Open List:(size "+L.size()+")\n" + L + "\n");
                 }
 
                 Node n = L.pop();

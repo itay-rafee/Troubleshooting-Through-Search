@@ -49,7 +49,7 @@ public class Ex1 {
         long endTime = System.nanoTime();
         long timeElapsed = endTime - startTime;
         double timeSecond = (double)timeElapsed / 1000000000;
-        writeToOutput += timeSecond + " seconds\n";
+        writeToOutput += timeSecond + " seconds";
         System.out.println(writeToOutput); // to delete
         writeToFile("output", writeToOutput);
     }

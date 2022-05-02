@@ -4,8 +4,11 @@ import java.util.HashSet;
 public class DFID extends Algo {
     public static final String cutoff = "cutoff", fail = "fail";
     public static String finedPath(Node start, String goal){
+        if (start.get_id().equals(goal)){
+            return path(start);
+        }
+
         for (int depth = 1; depth < Integer.MAX_VALUE; depth++) {
-            System.out.println(depth);
             HashSet<String> H = new HashSet<>();
             String result = limitedDFS(start, goal, depth, H);
             if (!result.equals(cutoff) && !result.equals(fail)){
@@ -22,7 +25,7 @@ public class DFID extends Algo {
         else if (limit == 0) return cutoff;
         else {
             if (!Ex1.withoutOpen){
-                System.out.println("Open List:(size "+H.size()+")\n" + H);
+                System.out.println("Open List:(size "+H.size()+")\n" + H + "\n");
             }
             H.add(n.get_id());
             boolean isCutoff = false;

@@ -8,7 +8,7 @@ class Ex1Test {
     @org.junit.jupiter.api.Test
     void unit() {
         String filename = "check.txt";
-//        String algo = "BFS"; // BFS , DFID , A* , IDA* , DFBnB
+        String algo = "DFBnB"; // BFS , DFID , A* , IDA* , DFBnB
         try {
             FileWriter myWriter = new FileWriter(filename);
             myWriter.write(algo+"\n" +
@@ -32,11 +32,11 @@ class Ex1Test {
     @org.junit.jupiter.api.Test
     void inputTest() {
         String filename = "check.txt";
-//        String algo = "BFS"; // BFS , DFID , A* , IDA* , DFBnB
+        String algo = "DFBnB"; // BFS , DFID , A* , IDA* , DFBnB
         try {
             FileWriter myWriter = new FileWriter(filename);
             myWriter.write(algo+"\n" +
-                    "no open\n" +
+                    "with open\n" +
                     "small\n" +
                     "R,R,_\n" +
                     "B,B,_\n" +
@@ -83,7 +83,7 @@ class Ex1Test {
     @org.junit.jupiter.api.Test
     void bad2() {
         String filename = "check.txt";
-//        String algo = "A*"; // BFS , DFID , A* , IDA* , DFBnB
+        String algo = "DFID"; // BFS , DFID , A* , IDA* , DFBnB
         try {
             FileWriter myWriter = new FileWriter(filename);
             myWriter.write(algo+"\n" +
@@ -204,6 +204,30 @@ class Ex1Test {
                     "R,R,R,R,_\n" +
                     "B,B,B,_,_\n" +
                     "_,_,_,_,_");
+            myWriter.close();
+            Ex1.check(filename);
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    @org.junit.jupiter.api.Test
+    void checkNoPath() {
+        String filename = "check.txt";
+//        String algo = "BFS"; // BFS , DFID , A* , IDA* , DFBnB
+        try {
+            FileWriter myWriter = new FileWriter(filename);
+            myWriter.write(algo+"\n" +
+                    "no open\n" +
+                    "small\n" +
+                    "R,R,R\n" +
+                    "G,B,B\n" +
+                    "G,B,G\n" +
+                    "Goal state:\n" +
+                    "R,R,_\n" +
+                    "B,B,_\n" +
+                    "G,G,_");
             myWriter.close();
             Ex1.check(filename);
         } catch (IOException e) {
